@@ -36,11 +36,11 @@ defmodule PxUAuth0.UserFromAuth do
          credentials: %Ueberauth.Auth.Credentials{other: %{"id_token" => jwt_token}}
        }) do
     case UserToken.verify_and_validate(jwt_token, UserToken.signer()) do
-       {:ok, _} = claims ->
-          claims
+      {:ok, _} = claims ->
+        claims
 
-        res ->
-          Logger.info("failed to validate JWT: #{inspect(res)}")
-     end
+      res ->
+        Logger.info("failed to validate JWT: #{inspect(res)}")
+    end
   end
 end

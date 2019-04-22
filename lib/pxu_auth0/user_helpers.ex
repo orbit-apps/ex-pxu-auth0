@@ -7,5 +7,6 @@ defmodule PxUAuth0.UserHelpers do
 
   def logged_in?(conn), do: Map.has_key?(conn.assigns, :current_user)
 
-  def in_group?(conn, group_name), do: conn |> current_user() |> Map.get(:groups, []) |> Enum.member?(group_name)
+  def in_group?(conn, group_name),
+    do: conn |> current_user() |> Map.get(:groups, []) |> Enum.member?(group_name)
 end

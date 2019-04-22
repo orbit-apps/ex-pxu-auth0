@@ -8,7 +8,9 @@ defmodule PxUAuth0.Plugs.EnsureAuthenticated do
     case get_session(conn, :current_user) do
       nil ->
         url = opts[:auth_path]
-        body = "<html><body>You are being <a href=\"#{HTML.html_escape(url)}\">redirected</a>.</body></html>"
+
+        body =
+          "<html><body>You are being <a href=\"#{HTML.html_escape(url)}\">redirected</a>.</body></html>"
 
         conn
         |> put_session(:preauth_path, conn.request_path)
@@ -31,7 +33,8 @@ defmodule PxUAuth0.Plugs.EnsureAuthenticated do
         conn
 
       redirect_path ->
-        body = "<html><body>You are being <a href=\"#{HTML.html_escape(redirect_path)}\">redirected</a>.</body></html>"
+        body =
+          "<html><body>You are being <a href=\"#{HTML.html_escape(redirect_path)}\">redirected</a>.</body></html>"
 
         conn
         |> delete_session(:preauth_path)
