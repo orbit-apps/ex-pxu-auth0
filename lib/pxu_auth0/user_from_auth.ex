@@ -1,0 +1,35 @@
+defmodule PxUAuth0.UserFromAuth do
+  @moduledoc """
+  Retrieve the user information from an auth request
+  """
+  require Logger
+
+  alias Ueberauth.Auth
+  alias PxUAuth0.UserToken
+
+  def find_or_create(%Auth{} = auth), do: {:ok, basic_info(auth)}
+
+  defp basic_info(auth) do
+    {:ok, claims} = extract_claims(auth)
+
+    %{
+      id: auth.uid,
+      name: Map.get(claims, "name"),
+      avatar: Map.get(claims, "picture"),
+      groups: Map.get(claims, "#{UserToken.claim_namespace()}groups", []),
+      claims: claims
+    }
+  end
+
+  defp extract_claims(%Auth{
+         credentials: %Ueberauth.Auth.Credentials{other: %{"id_token" => jwt_token}}
+       }) do
+    case UserToken.verify_and_validate(jwt_token, UserToken.signer()) do
+       {:ok, _} = claims ->
+          claims
+
+        res ->
+          Logger.info("failed to validate JWT: #{inspect(res)}")
+     end
+  end
+end
