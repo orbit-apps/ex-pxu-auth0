@@ -27,6 +27,8 @@ defmodule PxUAuth0.MixProject do
       {:joken, "~> 2.0"},
       {:ueberauth, "~> 0.4"},
       {:ueberauth_auth0, "~> 0.3"}
+      {:httpoison, "~> 1.5"},
+      {:jason, "~> 1.1"}
     ]
   end
 end
