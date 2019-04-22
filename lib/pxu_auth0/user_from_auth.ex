@@ -4,8 +4,8 @@ defmodule PxUAuth0.UserFromAuth do
   """
   require Logger
 
-  alias Ueberauth.Auth
   alias PxUAuth0.UserToken
+  alias Ueberauth.Auth
 
   @dev_credentials %{id: 1, name: "dev", avatar: "", groups: ["Apps Dev"], claims: %{}}
 

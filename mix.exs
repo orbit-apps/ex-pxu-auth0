@@ -21,6 +21,9 @@ defmodule PxUAuth0.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      # Dev
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      # Everything else
       {:joken, "~> 2.0"},
       {:ueberauth, "~> 0.4"},
       {:ueberauth_auth0, "~> 0.3"}
