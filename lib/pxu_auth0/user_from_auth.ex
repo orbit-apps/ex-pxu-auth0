@@ -7,7 +7,18 @@ defmodule PxUAuth0.UserFromAuth do
   alias Ueberauth.Auth
   alias PxUAuth0.UserToken
 
+  @dev_credentials %{id: 1, name: "dev", avatar: "", groups: ["Apps Dev"], claims: %{}}
+
+  def find_or_create(%Auth{provider: :identity} = auth), do: dev_user_authorization(auth)
   def find_or_create(%Auth{} = auth), do: {:ok, basic_info(auth)}
+
+  defp dev_user_authorization(%{extra: %{raw_info: %{"name" => name, "password" => password}}}) do
+    if name == System.get_env("LOGIN_NAME") and password == System.get_env("LOGIN_PASSWORD") do
+      {:ok, @dev_credentials}
+    else
+      {:error, "Incorrect Name or Password"}
+    end
+  end
 
   defp basic_info(auth) do
     {:ok, claims} = extract_claims(auth)
