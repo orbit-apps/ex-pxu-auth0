@@ -1,16 +1,14 @@
-defmodule PxUAuth0.UserToken do
+defmodule PxUAuth0.APIToken do
   use Joken.Config
   alias Joken.Signer
   alias Ueberauth.Strategy.Auth0.OAuth
-
-  @claim_namespace "https://pxu.co/claims/"
 
   def token_config do
     %{}
     |> add_claim(
       "aud",
-      fn -> config(:client_id) end,
-      fn val -> val == config(:client_id) end
+      fn -> config(:app_baseurl) end,
+      fn val -> val == config(:app_baseurl) end
     )
     |> add_claim(
       "iss",
@@ -18,8 +16,6 @@ defmodule PxUAuth0.UserToken do
       fn val -> val == "https://#{config(:domain)}/" end
     )
   end
-
-  def claim_namespace, do: @claim_namespace
 
   def signer, do: Signer.parse_config(:rs256)
 
