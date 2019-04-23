@@ -1,4 +1,4 @@
-defmodule PxUAuth0.Client.Auth0 do
+defmodule PxUAuth0.Auth0API do
   use HTTPoison.Base
   alias Ueberauth.Strategy.Auth0.OAuth
 

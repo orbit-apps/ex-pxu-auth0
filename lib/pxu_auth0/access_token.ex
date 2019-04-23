@@ -1,6 +1,6 @@
-defmodule PxUAuth0.Client do
+defmodule PxUAuth0.AccessToken do
   use Agent
-  alias PxUAuth0.Client.Auth0
+  alias PxUAuth0.Auth0API
 
   @default_token_life 23 * 60 * 60 * 1000
   @moduledoc """
@@ -25,8 +25,8 @@ defmodule PxUAuth0.Client do
   def fetch do
     case get() do
       nil ->
-        Auth0.create_token_request()
-        |> Auth0.fetch_token()
+        Auth0API.create_token_request()
+        |> Auth0API.fetch_token()
         |> store()
 
         fetch()
