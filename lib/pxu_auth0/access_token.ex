@@ -65,7 +65,7 @@ defmodule PxUAuth0.AccessToken do
   end
 
   @doc """
-    Reset client cache.
+    Clear access token cache.
   """
   def empty do
     Agent.update(__MODULE__, fn _state -> %{} end)
