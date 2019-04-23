@@ -12,6 +12,14 @@ defmodule PxUAuth0.AccessToken do
   ```
   config :pxu_auth0, token_life: 10_000
   ``
+
+  ## Usage
+
+  ```
+  iex(1)> PxUAuth0.AccessToken.start_link()
+  iex(2)> PxUAuth0.fetch
+  {:ok, nkkdaknwpiepoqiwe....
+  ```
   """
 
   def start_link(initial_state \\ %{}) do
