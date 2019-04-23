@@ -31,20 +31,23 @@ defmodule PxUAuth0.AccessToken do
   fetched from the Auth0 api.
   """
   def fetch do
-    case get() do
-      nil ->
-        Auth0API.create_token_request()
-        |> Auth0API.fetch_token()
-        |> store()
+    with nil <- get(),
+         :ok <- fetch_new_token() |> store do
+      fetch()
+    else
+      {:error, error} ->
+        {:error, error}
 
-        fetch()
-
-      token ->
-        token
+      access_token ->
+        {:ok, access_token}
     end
   end
 
-  def store(%{"access_token" => token}, date_time_impl \\ NaiveDateTime) do
+  def store(access_token, date_time_impl \\ NaiveDateTime)
+
+  def store({:error, _err} = error, _date_time_impl), do: error
+
+  def store(token, date_time_impl) do
     Agent.update(__MODULE__, fn state ->
       Map.merge(state, %{access_token: token, update_date: date_time_impl.utc_now()})
     end)
@@ -57,7 +60,7 @@ defmodule PxUAuth0.AccessToken do
            update_date
            |> NaiveDateTime.diff(NaiveDateTime.utc_now(), :millisecond)
            |> Kernel.<(expiry_time) do
-      {:ok, access_token}
+      access_token
     else
       _ ->
         nil
@@ -69,5 +72,18 @@ defmodule PxUAuth0.AccessToken do
   """
   def empty do
     Agent.update(__MODULE__, fn _state -> %{} end)
+  end
+
+  defp fetch_new_token do
+    case Auth0API.create_token_request() |> Auth0API.fetch_token() do
+      {:ok, %{body: %{"access_token" => token}}} ->
+        token
+
+      {:ok, %{body: error}} ->
+        {:error, error}
+
+      {:error, error} ->
+        {:error, error}
+    end
   end
 end
