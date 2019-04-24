@@ -10,20 +10,19 @@ defmodule PxUAuth0.AccessTokenTest do
   end
 
   setup do
-    AccessToken.start_link()
+    AccessToken.start_link(%{})
     :ok
   end
 
   describe "get/0" do
     setup do
       AccessToken.empty()
-      %{token: %{"access_token" => %{"foo" => "bar"}}}
+      %{token: %{"foo" => "bar"}}
     end
 
     test "it looks up an access token if one exists", %{token: token} do
       AccessToken.store(token)
-      %{"access_token" => access_token} = token
-      assert AccessToken.get() == {:ok, access_token}
+      assert AccessToken.get() == token
     end
 
     test "it returns nil if date difference is greater than config", %{token: token} do

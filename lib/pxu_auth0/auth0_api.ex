@@ -4,14 +4,22 @@ defmodule PxUAuth0.Auth0API do
 
   def fetch_token(request_body),
     do:
-      post!("https://#{config(:domain)}/oauth/token", request_body, [
+      post("https://#{config(:domain)}/oauth/token", request_body, [
         {"Accept", "application/json"},
         {"Content-Type", "application/json"}
       ])
 
   def process_request_body(body), do: Jason.encode!(body)
 
-  def process_response_body(body), do: body |> Jason.decode!() |> Map.get(:body, %{})
+  def process_response_body(body) do
+    case Jason.decode(body) do
+      {:ok, body} ->
+        body
+
+      error ->
+        error
+    end
+  end
 
   def create_token_request do
     %{
