@@ -82,6 +82,9 @@ defmodule PxUAuth0.AccessToken do
       {:ok, %{body: error}} ->
         {:error, error}
 
+      {:ok, %{body: {:error, %Jason.DecodeError{} = error}}} ->
+        {:error, error}
+
       {:error, error} ->
         {:error, error}
     end
