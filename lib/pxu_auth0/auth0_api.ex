@@ -11,7 +11,11 @@ defmodule PxUAuth0.Auth0API do
 
   def process_request_body(body), do: Jason.encode!(body)
 
-  def process_response_body(body), do: body |> Jason.decode!()
+  def process_response_body(body) do
+    {_status, result} = Jason.decode(body)
+
+    result
+  end
 
   def create_token_request do
     %{
