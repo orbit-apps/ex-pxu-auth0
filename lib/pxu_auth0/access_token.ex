@@ -16,8 +16,8 @@ defmodule PxUAuth0.AccessToken do
   ## Usage
 
   ```
-  iex(1)> PxUAuth0.AccessToken.start_link()
-  iex(2)> PxUAuth0.AccessToken.fetch
+  $ iex -S mix
+  iex(1)> PxUAuth0.AccessToken.fetch
   {:ok, nkkdaknwpiepoqiwe....
   ```
   """
@@ -32,7 +32,7 @@ defmodule PxUAuth0.AccessToken do
   """
   def fetch do
     with nil <- get(),
-         :ok <- fetch_new_token() |> store do
+         :ok <- fetch_new_token() |> store() do
       fetch()
     else
       {:error, error} ->
