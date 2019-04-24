@@ -17,13 +17,13 @@ defmodule PxUAuth0.AccessToken do
 
   ```
   iex(1)> PxUAuth0.AccessToken.start_link()
-  iex(2)> PxUAuth0.fetch
+  iex(2)> PxUAuth0.AccessToken.fetch
   {:ok, nkkdaknwpiepoqiwe....
   ```
   """
 
-  def start_link(initial_state \\ %{}) do
-    Agent.start_link(fn -> initial_state end, name: __MODULE__)
+  def start_link(_args) do
+    Agent.start_link(fn -> %{} end, name: __MODULE__)
   end
 
   @doc """
