@@ -10,7 +10,7 @@ defmodule PxUAuth0.AccessTokenTest do
   end
 
   setup do
-    AccessToken.start_link()
+    AccessToken.start_link(%{})
     :ok
   end
 
