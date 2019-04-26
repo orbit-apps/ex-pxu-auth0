@@ -13,7 +13,7 @@ defmodule PxUAuth0.UserFromAuth do
   def find_or_create(%Auth{} = auth), do: {:ok, basic_info(auth)}
 
   defp dev_user_authorization(%{extra: %{raw_info: %{"name" => name, "password" => password}}}) do
-    if name == System.get_env("LOGIN_NAME") and password == System.get_env("LOGIN_PASSWORD") do
+    if name == login_name() and password == login_password() do
       {:ok, @dev_credentials}
     else
       {:error, "Incorrect Name or Password"}
@@ -43,4 +43,7 @@ defmodule PxUAuth0.UserFromAuth do
         Logger.info("failed to validate JWT: #{inspect(res)}")
     end
   end
+
+  defp login_name, do: System.get_env("LOGIN_NAME") || "dev"
+  defp login_password, do: System.get_env("LOGIN_PASSWORD") || "dev"
 end
