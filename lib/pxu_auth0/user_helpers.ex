@@ -1,6 +1,6 @@
 defmodule PxUAuth0.UserHelpers do
   @moduledoc """
-  Conveniences for Auth0 authenication.
+  Conveniences for Auth0 authentication.
   """
 
   def current_user(conn), do: conn.assigns[:current_user]
