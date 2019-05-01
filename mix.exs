@@ -24,13 +24,15 @@ defmodule PxUAuth0.MixProject do
     [
       # Dev
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0.0-rc.4", only: :dev, runtime: false},
+      {:mix_test_watch, "~> 0.9.0", only: :dev, runtime: false},
       {:ueberauth_identity, "~> 0.2", only: :dev},
       # Everything else
+      {:httpoison, "~> 1.5"},
+      {:jason, "~> 1.1"},
       {:joken, "~> 2.0"},
       {:ueberauth, "~> 0.4"},
-      {:ueberauth_auth0, "~> 0.3"},
-      {:httpoison, "~> 1.5"},
-      {:jason, "~> 1.1"}
+      {:ueberauth_auth0, "~> 0.3"}
     ]
   end
 end
