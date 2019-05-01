@@ -1,7 +1,6 @@
 defmodule PxUAuth0.Plugs.APIAuthenticator do
   import Plug.Conn
 
-  alias Joken.Signer
   alias PxUAuth0.APIToken
 
   def init(config), do: config
@@ -12,7 +11,7 @@ defmodule PxUAuth0.Plugs.APIAuthenticator do
         conn
         |> assign(:jwt_claims, claims)
 
-      res ->
+      _res ->
         conn
         |> resp(401, "{\"Error\": \"Not Authorized\"}")
         |> halt()
