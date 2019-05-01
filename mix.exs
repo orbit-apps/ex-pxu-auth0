@@ -24,6 +24,7 @@ defmodule PxUAuth0.MixProject do
     [
       # Dev
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:ueberauth_identity, "~> 0.2", only: :dev},
       # Everything else
       {:joken, "~> 2.0"},
       {:ueberauth, "~> 0.4"},
