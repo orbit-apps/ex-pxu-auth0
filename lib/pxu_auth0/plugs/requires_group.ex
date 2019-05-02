@@ -12,6 +12,7 @@ defmodule PxUAuth0.Plugs.RequiresGroup do
     else
       _ ->
         conn
+        |> put_resp_header("content-type", "text/html")
         |> resp(401, "Not Authorized.")
         |> halt()
     end

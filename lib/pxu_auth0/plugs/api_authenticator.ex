@@ -13,6 +13,7 @@ defmodule PxUAuth0.Plugs.APIAuthenticator do
 
       _res ->
         conn
+        |> put_resp_header("content-type", "application/json")
         |> resp(401, "{\"Error\": \"Not Authorized\"}")
         |> halt()
     end
