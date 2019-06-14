@@ -23,7 +23,7 @@ defmodule PxUAuth0.MixProject do
   defp deps do
     [
       # Dev
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.4", only: :dev, runtime: false},
       {:mix_test_watch, "~> 0.9.0", only: :dev, runtime: false},
       {:ueberauth_identity, "~> 0.2", only: :dev},
