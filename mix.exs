@@ -4,7 +4,7 @@ defmodule PxUAuth0.MixProject do
   def project do
     [
       app: :pxu_auth0,
-      version: "0.1.8",
+      version: "0.1.9",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -31,8 +31,9 @@ defmodule PxUAuth0.MixProject do
       {:httpoison, "~> 1.5"},
       {:jason, "~> 1.1"},
       {:joken, "~> 2.0"},
-      {:ueberauth, "~> 0.4"},
-      {:ueberauth_auth0, "~> 0.3"}
+      {:ueberauth, "~> 0.6"},
+#{:ueberauth_auth0, "~> 0.4"}
+      {:ueberauth_auth0, github: "sntran/ueberauth_auth0", branch: "master"}
     ]
   end
 end
