@@ -1,7 +1,6 @@
 defmodule PxUAuth0.Client.Auth0APITest do
   use ExUnit.Case
   alias PxUAuth0.Auth0API
-  alias Ueberauth.Strategy.Auth0.OAuth
 
   describe "create_token_request/0" do
     test "it creates a request from configurations" do
