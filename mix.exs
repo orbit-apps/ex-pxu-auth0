@@ -9,6 +9,10 @@ defmodule PxUAuth0.MixProject do
       version: @version,
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
+      dialyzer: [
+        plt_add_apps: [:mix, :ex_unit],
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+      ],
       deps: deps()
     ]
   end
@@ -26,7 +30,7 @@ defmodule PxUAuth0.MixProject do
     [
       # Dev
       {:credo, "~> 1.4.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0.0-rc.4", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.0.0-rc.4", only: [:dev, :test], runtime: false},
       {:mix_test_watch, "~> 1.0.1", only: :dev, runtime: false},
       {:ueberauth_identity, "~> 0.2", only: :dev},
       # Everything else
