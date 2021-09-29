@@ -29,16 +29,16 @@ defmodule PxUAuth0.MixProject do
   defp deps do
     [
       # Dev
-      {:credo, "~> 1.4.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.5.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1.0", only: [:dev, :test], runtime: false},
-      {:mix_test_watch, "~> 1.0.1", only: :dev, runtime: false},
+      {:mix_test_watch, "~> 1.1", only: :dev, runtime: false},
       {:ueberauth_identity, "~> 0.2", only: :dev},
       # Everything else
       {:httpoison, "~> 1.5"},
       {:jason, "~> 1.1"},
-      {:joken, "~> 2.0"},
-      {:ueberauth, "~> 0.4"},
-      {:ueberauth_auth0, "~> 0.3"}
+      {:joken, "~> 2.4"},
+      {:ueberauth, "~> 0.7"},
+      {:ueberauth_auth0, "~> 2.0"}
     ]
   end
 end
