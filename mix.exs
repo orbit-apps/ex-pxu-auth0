@@ -1,13 +1,13 @@
 defmodule PxUAuth0.MixProject do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.4.0"
 
   def project do
     [
       app: :pxu_auth0,
       version: @version,
-      elixir: "~> 1.11",
+      elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       dialyzer: [
         plt_add_apps: [:mix, :ex_unit],
