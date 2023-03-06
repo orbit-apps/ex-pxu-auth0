@@ -7,7 +7,7 @@ defmodule PxUAuth0.MixProject do
     [
       app: :pxu_auth0,
       version: @version,
-      elixir: "~> 1.12",
+      elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       dialyzer: [
         plt_add_apps: [:mix, :ex_unit],
