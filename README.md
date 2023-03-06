@@ -7,7 +7,7 @@
 ```elixir
 def deps do
   [
-    {:pxu_auth0, github: "", tag: ""}
+    {:pxu_auth0, github: "orbit-apps/ex-pxu-auth0", tag: "v0.5.0"}
   ]
 end
 ```

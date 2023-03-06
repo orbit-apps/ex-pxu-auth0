@@ -1,13 +1,13 @@
 defmodule PxUAuth0.MixProject do
   use Mix.Project
 
-  @version "0.4.0"
+  @version "0.5.0"
 
   def project do
     [
       app: :pxu_auth0,
       version: @version,
-      elixir: "~> 1.12",
+      elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       dialyzer: [
         plt_add_apps: [:mix, :ex_unit],
@@ -29,16 +29,16 @@ defmodule PxUAuth0.MixProject do
   defp deps do
     [
       # Dev
-      {:credo, "~> 1.5.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.1.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.2", only: [:dev, :test], runtime: false},
       {:mix_test_watch, "~> 1.1", only: :dev, runtime: false},
       {:ueberauth_identity, "~> 0.2", only: :dev},
       # Everything else
-      {:httpoison, "~> 1.5"},
+      {:httpoison, "~> 2.0"},
       {:jason, "~> 1.1"},
-      {:joken, "~> 2.4"},
+      {:joken, "~> 2.6"},
       {:ueberauth, "~> 0.7"},
-      {:ueberauth_auth0, "~> 2.0"}
+      {:ueberauth_auth0, "~> 2.1"}
     ]
   end
 end
