@@ -34,7 +34,7 @@ defmodule PxUAuth0.MixProject do
       {:mix_test_watch, "~> 1.1", only: :dev, runtime: false},
       {:ueberauth_identity, "~> 0.2", only: :dev},
       # Everything else
-      {:httpoison, "~> 1.5"},
+      {:httpoison, "~> 2.0"},
       {:jason, "~> 1.1"},
       {:joken, "~> 2.4"},
       {:ueberauth, "~> 0.7"},
